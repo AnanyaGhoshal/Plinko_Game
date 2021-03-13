@@ -66,7 +66,8 @@ function draw() {
 
   drawSprites();
   background("black");
-  textSize(20)
+  textSize(20);
+  text("Score : "+score,20,30);
   
 
   fill(255);
@@ -112,41 +113,15 @@ function draw() {
 
 function mousePressed(){
 
-  text("Score : "+score,20,30);
+  
 
   if(mousePressedOver(canvas)){
 
-  if(gameState!=="end"){
-
     particle = new Particle(mouseX,10,5,5);
-
-    if(particle.body.position.x<300){
-      score = score+500;
-    }
-
-    if(particle.body.position.x>301 && particle.body.position.x<600){
-
-      score = score+100;
-    }
-
-    if(particle.body.position.x>601 && particle.body.position.x<900){
-      score = score+200;
-    }
-
-    if(score===1000){
-      textSize(50);
-      text("GAMEOVER",280,400);
-      gameState = "end";
-     }
-
     particle.display();
-
-    
+   
   }
-
 
 //  console.log(particle.body);
 
-
-  }
 }
