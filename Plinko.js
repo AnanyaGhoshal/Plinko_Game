@@ -1,9 +1,9 @@
 class Plinko {
     constructor(x, y) {
         var options = {
-            restitution: 1,
-            friction: 0,
-            isStatic:true
+            'restitution': 1,
+            'friction': 0,
+            'isStatic':true
         }
         this.r = 10;
         this.body = Bodies.circle(x, y, 10, options);

@@ -2,7 +2,7 @@ class Particle {
     constructor(x,y,r) {
 
         var options ={
-            restitution:0.4
+            'restitution':0.4
         }
         this.r=r;
       
