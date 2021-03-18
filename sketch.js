@@ -6,9 +6,9 @@ const Bodies = Matter.Bodies;
 var engine, world;
 var particle;
 var canvas;
+var count;
 
 var divisions = []; 
-//var particles = [];
 var plinkos = [];
 
 var divisionHeight=300;
@@ -23,7 +23,6 @@ function setup() {
   engine = Engine.create();
   world = engine.world;
   ground = new Ground(width/2,height,width,20);
- // particle = new Particle(mouseX,10,5,5);
 
 
    for (var k = 0; k <=width; k = k + 80) {
@@ -56,9 +55,8 @@ function setup() {
     }
 
     score = 0;
+    count = 0;
 
-    //mousePressed();
-         
 }
  
 
@@ -85,24 +83,13 @@ function draw() {
   text(200,735,550);
 
   Engine.update(engine);
-
-  if(gameState!="end"){
   
- 
    for (var i = 0; i < plinkos.length; i++) {
      
      plinkos[i].display();
      
    }
-//if(frameCount%160===0){
-//  particles.push(new Particle(random(width/2-30, width/2+30),5,5));
-//  score++;
-//}
-//
-// for (var j = 0; j < particles.length; j++) {
-//
-//  particles[j].display();
-//}
+
    for (var k = 0; k < divisions.length; k++) {
      
      divisions[k].display();
@@ -112,9 +99,61 @@ function draw() {
 
     particle.display();
 
+    if(particle.body.position.y>760){
 
+      if(particle.body.position.x<300){
+
+        score = score+500;
+        count = count+1;
+        particle = null;
+
+      }
+                        
+    }
+
+    
    }
 
+   if(particle!=null){
+
+    particle.display();
+    if(particle.body.position.y>760){
+
+      if(particle.body.position.x>301 && particle.body.position.x<600){
+
+        score = score+100;
+        count = count+1;
+        particle = null;
+
+      }
+                        
+    }
+    
+   }
+
+   if(particle!=null){
+
+    particle.display();
+    if(particle.body.position.y>760){
+
+      if(particle.body.position.x>601 && particle.body.position.x<900){
+
+        score = score+200;
+        count = count+1;
+        particle = null;
+        
+      }
+                        
+    }
+    
+   }
+
+
+
+   if(count===5){
+    gameState = "end";
+    textSize(50);
+    text("GAMEOVER!!",230,400);
   }
 
   
@@ -124,12 +163,8 @@ function mousePressed(){
 
   if(gameState!="end")
 { 
-  console.log("hello");
      particle = new Particle(mouseX,10,5,5);
-     //particle.display();
           
   }
-
-  
 
 }
